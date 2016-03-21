@@ -23,10 +23,25 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+			<plugin>
+			   <groupId>org.springframework.boot</groupId>
+			   <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
-
+		<parent>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-parent</artifactId>
+			<version>1.3.3.RELEASE</version>
+		</parent>
     <dependencies>
+	<!--          Spring           -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>1.3.3.RELEASE</version>
+		</dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
