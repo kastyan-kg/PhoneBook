@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+body{
+	font-family: 'Alegreya Sans', sans-serif;
+	color:#747704
+}
+.title-logo{
+	margin-top: 10px;
+	max-width: 93px;
+   max-height:100%;
+}
+.button_class{
+	font-family: 'Alegreya Sans', sans-serif;
+	color:#747704
+}
+.news_block{
+	border-style: double;
+    border-color: #747704;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 35px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+.loginPass{
+	margin: 40px;
+    text-align: center;
+    padding: 25px;
+}
+
+	.footer, .push {
+	height: 155px; /* .push must be the same height as .footer */
+	
+}
+.mycheckbox{
+	width: 50%;
+    margin: 0 auto;
+}
+.regLink{
+	margin: 10px;
+}@CHARSET "ISO-8859-1";
