@@ -22,63 +22,43 @@
 	<div class = "row">
 		
 		<div class = "col-md-3">
-		<img class = "title-logo" src = "resources/images/logo.png"/>
+		<img class = "title-logo" src = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSQEcCeE5E1GCBkXHQwR_cTlK6MJnWImhOGaTJ4cO00thCosl1X"/>
 			<h4><div class = "text-center">
 				<c:if test="${sessionScope.login!= null}">
 				<b>Hello, <c:out value="${sessionScope.login}"/>!</b>
 				</c:if>
 				<c:if test="${sessionScope.login == null}">
-				<b>Hello, <c:out value="quest"/>!</b>
+				<b>Hello, <c:out value="guest"/>!</b>
 				</c:if>
+				<a href="#" class = "myLink"> log Out</a>
 			</div></h4>
 		</div>
 		<div class = "col-md-9">
 			<h1><p class="text-center text-capitalize title-super">Welcome to Phonebook</p></h1>
-			<h4 class ="text-center"> Test assignment for lardi</h4>
+			<h4 class ="text-center">Test assignment for lardi</h4>
 		
 	</div class = "button_class">
 	
 		<div class="btn-group btn-group-justified" role="group" aria-label="...">
 			<div class="btn-group" role="group">
-				<a href="index" id="btn">
-					<button type="button" class="btn btn-default">Main</button>
-				</a>
+			<a href="index" id="btn">
+			<button type="button" class="btn btn-default">Main</button>
+			</a>
 		</div>
 		<div class="btn-group" role="group">
 			<a href="login" id="btn">
-				<button type="button" class="btn btn-default" >LogIN</button>
+			<button type="button" class="btn btn-default" >LogIN</button>
 			</a>
 		</div>
 		<div class="btn-group" role="group">
 			<a href="about" id="btn">
-				<button type="button" class="btn btn-default">About</button>
+			<button type="button" class="btn btn-default">About</button>
 			</a>
 		</div>
 	</div>
-	
-	<div class = "col-md-12">
-		<div class = "loginPass">
-			<form class="form-inline"  method = "post" action = "logining">
-  				<div class="form-group">
-    			<label class="sr-only" for="exampleInputEmail3">Email address</label>
-   			 <input class="form-control" placeholder="Email" name = "login" >
- 			 </div>
-  			<div class="form-group">
-    			<label class="sr-only" for="exampleInputPassword3">Password</label>
-    		<input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
-  		</div>
-  			<div class="checkbox">
-    			<label>
-    		  <input type="checkbox"> Remember me
-   			 </label>
-  			</div>
-  			<button type="submit" class="btn btn-default regLink">Sign in</button>
-  			<a href="registration" id = "btn" class = "regLink"> Register </a>
-			</form>
 			
-		</div>		
 		
-	</div>
+	
 	<div class = "footer">
 		<div class = "row">
 		
