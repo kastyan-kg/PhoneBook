@@ -22,12 +22,12 @@
 	<div class = "row">
 		
 		<div class = "col-md-3">
-		<img class = "title-logo" src = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSQEcCeE5E1GCBkXHQwR_cTlK6MJnWImhOGaTJ4cO00thCosl1X"/>
+		<img class = "title-logo" src = "resources/images/logo.png"/>
 			<h4><div class = "text-center">
 				<c:if test="${sessionScope.login!= null}">
-				<b>Hello, <c:out value="${sessionScope.login}"/>!</b>
+				<b>Hello, <c:out value="${login}"/>!</b>
 				</c:if>
-				<c:if test="${sessionScope.login == null}">
+				<c:if test="${login == null}">
 				<b>Hello, <c:out value="guest"/>!</b>
 				</c:if>
 				<a href="#" class = "myLink"> log Out</a>
@@ -68,7 +68,7 @@
 			
 				<address>
 				<strong>Kiev, Ukraine</strong><br>
-				<a href="mailto:#">volokhink@gmail.com</a>
+				<a href="https://github.com/kastyan-kg/PhoneBook.git">gitHub</a>
 				</address>
 		    </div>
 		</div>

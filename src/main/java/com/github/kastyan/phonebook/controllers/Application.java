@@ -6,7 +6,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan
+import com.github.kastyan.phonebook.App;
+
+@ComponentScan(basePackageClasses = App.class)
 @EnableAutoConfiguration
 public class Application extends SpringBootServletInitializer {
 
