@@ -13,7 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.kastyan.phonebook.classes.LoginRequest;
@@ -23,7 +23,7 @@ import com.github.kastyan.phonebook.classes.User;
 
 @Controller
 public class LogInController {
-	 
+	
 	@RequestMapping(value ="/login", method = RequestMethod.GET)
 	public ModelAndView logIn(){
 		final ModelAndView mav =  new ModelAndView("/login");
@@ -40,16 +40,19 @@ public class LogInController {
 		mav.addObject("loginrequest",loginrequest );
 		return mav;
 	}
-	@RequestMapping(value ="/loginCheck", method = RequestMethod.POST)
-	public ModelAndView loginCheck(@ModelAttribute("loginRequest") LoginRequest loginRequest, HttpServletRequest req){
+	
+	@RequestMapping(value ="/logincheck", method = RequestMethod.POST)
+	public  ModelAndView loginCheck(@ModelAttribute("LoginRequest") LoginRequest loginRequest, HttpServletRequest req){
 		String login = loginRequest.getLogin();
 		String password = loginRequest.getPassword();
 		HttpSession session = req.getSession();
 		User user = new User();
-		user.setLogin("kos");
+		user.setName(login);
 		session.setAttribute("user", user);
+		ModelAndView mav = new ModelAndView("/index");
+		mav.addObject("user", user);
 		
-		return new ModelAndView("/index");
+		return mav;
 	}
 	
 	/*@RequestMapping(value = "/login", method = RequestMethod.GET)
