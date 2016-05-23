@@ -2,6 +2,8 @@ package com.github.kastyan.phonebook.controllers;
 
 
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,51 +27,42 @@ import com.github.kastyan.phonebook.classes.User;
 public class LogInController {
 	
 	@RequestMapping(value ="/login", method = RequestMethod.GET)
-	public ModelAndView logIn(){
-		final ModelAndView mav =  new ModelAndView("/login");
+	public ModelAndView logIn(HttpServletRequest req){
 		LoginRequest loginRequest = new LoginRequest();
-		mav.addObject("loginRequest",loginRequest );
-		return mav;
-	}
-	@RequestMapping(value ="/logout", method = RequestMethod.GET)
-	public ModelAndView logOut(HttpServletRequest req, HttpServletResponse resp){
+		HttpSession session = req.getSession();
+		User user = (User)session.getAttribute("user");
 		final ModelAndView mav =  new ModelAndView("/login");
-		HttpSession httpSession = req.getSession(true);
-		httpSession.invalidate();
-		LoginRequest loginrequest = new LoginRequest();
-		mav.addObject("loginrequest",loginrequest );
+		mav.addObject("user", user);
+		mav.addObject("loginRequest", loginRequest);
+		
 		return mav;
 	}
 	
+	
 	@RequestMapping(value ="/logincheck", method = RequestMethod.POST)
-	public  ModelAndView loginCheck(@ModelAttribute("LoginRequest") LoginRequest loginRequest, HttpServletRequest req){
+	public  ModelAndView loginCheck(@ModelAttribute("LoginRequest") LoginRequest loginRequest, HttpServletRequest req) throws ClassNotFoundException, SQLException{
 		String login = loginRequest.getLogin();
 		String password = loginRequest.getPassword();
+		loginRequest.checkLogAndPass(login, password);
 		HttpSession session = req.getSession();
 		User user = new User();
 		user.setName(login);
 		session.setAttribute("user", user);
-		ModelAndView mav = new ModelAndView("/index");
+		ModelAndView mav = new ModelAndView("redirect:/index");
 		mav.addObject("user", user);
 		
 		return mav;
 	}
-	
-	/*@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView  user(){
+	@RequestMapping(value ="/logout", method = RequestMethod.GET)
+	public ModelAndView logOut(HttpServletRequest req, HttpServletResponse resp){
 		
-		return new ModelAndView("login", "command", new Login() );
+		HttpSession httpSession = req.getSession();
+		httpSession.invalidate();
 		
+		return new ModelAndView("redirect:/index");
 	}
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	   public String addStudent(@ModelAttribute("SpringWeb")Login user, 
-	   ModelMap model) {
-	      model.addAttribute("login", user.getLogin());
-	      model.addAttribute("password", user.getPassword());
-	     
-	      
-	      return "index";
-	   }*/
+	
+	
 	
 
 }
