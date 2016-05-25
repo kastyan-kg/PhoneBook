@@ -25,12 +25,13 @@ import com.github.kastyan.phonebook.classes.User;
 
 @Controller
 public class LogInController {
-	
+	@Autowired
+	private User user;
 	@RequestMapping(value ="/login", method = RequestMethod.GET)
 	public ModelAndView logIn(HttpServletRequest req){
 		LoginRequest loginRequest = new LoginRequest();
-		HttpSession session = req.getSession();
-		User user = (User)session.getAttribute("user");
+		//HttpSession session = req.getSession();
+		//User user = (User)session.getAttribute("user");
 		final ModelAndView mav =  new ModelAndView("/login");
 		mav.addObject("user", user);
 		mav.addObject("loginRequest", loginRequest);
@@ -44,10 +45,10 @@ public class LogInController {
 		String login = loginRequest.getLogin();
 		String password = loginRequest.getPassword();
 		loginRequest.checkLogAndPass(login, password);
-		HttpSession session = req.getSession();
-		User user = new User();
+		//HttpSession session = req.getSession();
+		//User user = new User();
 		user.setName(login);
-		session.setAttribute("user", user);
+		//session.setAttribute("user", user);
 		ModelAndView mav = new ModelAndView("redirect:/index");
 		mav.addObject("user", user);
 		

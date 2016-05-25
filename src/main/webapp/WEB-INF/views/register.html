@@ -23,13 +23,7 @@
 		<img class = "title-logo" src = "resources/images/logo.png"/>
 			<h4>
 			    <div class = "text-center">
-					<div th:if ='${user!= null}'>
 						<b>Hello, <span th:text="${user.name}"/>!</b> <a href="logout" id="btn">LogOut</a>
-					</div>
-					<div th:if ='${user == null}'>
-						<b>Hello, <th:text> "guest"</th:text>!</b>
-					</div>
-					
 				</div>
 			</h4>
 		</div>
