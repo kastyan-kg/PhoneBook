@@ -56,15 +56,15 @@
 			<form class="form-inline" action="#" th:action="@{/registration}"  th:object="${registerRequest}" method="post" >
 				<div class="form-group">
 					<label class="sr-only">Login</label>
-				    <input class="form-control" placeholder="Email" name = "login" th:field="*{login}" ></input>
+				    <input class="form-control" placeholder="Login" name = "login" th:field="*{login}" ></input>
 				</div>
 				<div class="form-group">
 					<label class="sr-only">Password</label>
-				    <input type="password" class="form-control"  th:field="*{password}"></input>
+				    <input type="password" class="form-control" placeholder="Password" th:field="*{password}"></input>
 				</div>
 				<div class="form-group">
 					<label class="sr-only">Full Name</label>
-				    <input type="password" class="form-control"  th:field="*{fullName}"></input>
+				    <input type="password" class="form-control" placeholder="FullName"  th:field="*{fullName}"></input>
 				</div>
 				
 					<button type="submit" class="btn btn-default regLink">Register</button>

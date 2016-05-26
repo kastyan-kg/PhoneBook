@@ -2,6 +2,7 @@ package com.github.kastyan.phonebook.controllers;
 
 
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,30 +29,27 @@ public class LogInController {
 	@Autowired
 	private User user;
 	@RequestMapping(value ="/login", method = RequestMethod.GET)
-	public ModelAndView logIn(HttpServletRequest req){
+	public ModelAndView logIn(){
 		LoginRequest loginRequest = new LoginRequest();
-		//HttpSession session = req.getSession();
-		//User user = (User)session.getAttribute("user");
 		final ModelAndView mav =  new ModelAndView("/login");
 		mav.addObject("user", user);
 		mav.addObject("loginRequest", loginRequest);
-		
 		return mav;
 	}
 	
 	
 	@RequestMapping(value ="/logincheck", method = RequestMethod.POST)
-	public  ModelAndView loginCheck(@ModelAttribute("LoginRequest") LoginRequest loginRequest, HttpServletRequest req) throws ClassNotFoundException, SQLException{
+	public  ModelAndView loginCheck(@ModelAttribute("LoginRequest") LoginRequest loginRequest) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException{
 		String login = loginRequest.getLogin();
 		String password = loginRequest.getPassword();
-		loginRequest.checkLogAndPass(login, password);
-		//HttpSession session = req.getSession();
-		//User user = new User();
-		user.setName(login);
-		//session.setAttribute("user", user);
-		ModelAndView mav = new ModelAndView("redirect:/index");
+		ModelAndView mav = null;
+		if(user.checkLogAndPass(login, password)){
+			user.setName(login);
+			mav = new ModelAndView("redirect:/index");
+		}else{
+			mav = new ModelAndView("redirect:/login");
+		}
 		mav.addObject("user", user);
-		
 		return mav;
 	}
 	@RequestMapping(value ="/logout", method = RequestMethod.GET)
