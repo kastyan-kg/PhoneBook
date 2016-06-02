@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 @Scope(value = "session",  proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class User {
 	private String name = "guest" ;
+	private int userID;
 	
 	
 	public String getName() {
@@ -27,7 +29,16 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-public boolean checkPossibleLogin(String login) throws NoSuchAlgorithmException, ClassNotFoundException, SQLException{
+	
+    public int getUserId() {
+		return userID;
+	}
+
+	public void setUserId(int userId) {
+		this.userID = userId;
+	}
+
+    public boolean checkPossibleLogin(String login) throws NoSuchAlgorithmException, ClassNotFoundException, SQLException{
 		
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = null;
@@ -45,7 +56,7 @@ public boolean checkPossibleLogin(String login) throws NoSuchAlgorithmException,
 	    }
 		return true;
 	}
-public boolean createUser(String login, String password, String fullName) throws NoSuchAlgorithmException, ClassNotFoundException, SQLException{
+    public boolean createUser(String login, String password, String fullName) throws NoSuchAlgorithmException, ClassNotFoundException, SQLException{
 	
 	if(checkPossibleLogin(login)){
 		DigestPassword util = new DigestPassword();
@@ -68,7 +79,8 @@ public boolean createUser(String login, String password, String fullName) throws
 	
 
 }
-public boolean checkLogAndPass(String login, String password) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException{
+    public boolean checkLogAndPass(String login, String password) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException{
+
 	DigestPassword util = new DigestPassword();
 	String digestedPassword = util.digestPass(password);
 	Class.forName("com.mysql.cj.jdbc.Driver");
@@ -97,4 +109,5 @@ public boolean checkLogAndPass(String login, String password) throws ClassNotFou
 	
 	
 }
+    
 }

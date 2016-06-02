@@ -54,10 +54,10 @@
 	<div>
 	
 	<!-- smth inside -->
-		<form class="form-inline">
+		<form class="form-inline" action="#" th:action="@{/addingcontact}"  th:object="${contact}" method="post">
 			  <div class="form-group">
 				
-				<input type="text" class="form-control" id="Surname" placeholder="Surname"></input>
+				<input class="form-control"  placeholder="Surname" th:field="*{surname}" ></input>
 			  </div>
 			  <div class="form-group">
 					<input type="text" class="form-control" id="Name" placeholder="Name"></input>

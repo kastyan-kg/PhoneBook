@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class Contact {
 	private String surname;
@@ -57,7 +60,14 @@ public class Contact {
 		this.email = email;
 	}
 	
-	public void addContact() throws ClassNotFoundException, SQLException{
+	public void addContact(Contact newContact) throws ClassNotFoundException, SQLException{
+		this.name = newContact.name;
+		this.surname = newContact.surname;
+		this.fathersName = newContact.fathersName;
+		this.cellPhone = newContact.cellPhone;
+		this.phone = newContact.phone;
+		this.addres = newContact.addres;
+		this.email = newContact.email;
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = null;
 		Statement stmt = null;
@@ -67,5 +77,11 @@ public class Contact {
 		+ "VALUES" + "('" + surname + "','" + name + "','" + fathersName + "'"+
 	    cellPhone + "','" + phone + "','" + addres + "','" + email + "'" + ");";
 		stmt.executeUpdate(sql);
+	}
+	public List showContacts(int userID){
+		
+		
+		
+		return null;
 	}
 }
