@@ -87,19 +87,22 @@ public class User {
 	Connection conn = null;
 	Statement stmt = null;
 	conn = DriverManager.getConnection("jdbc:mysql://localhost/phonebook?characterEncoding=UTF-8&useSSL=false","user", "1812");
-	String sql = "SELECT login, pass FROM USERS  WHERE login = '" + login + "'";
+	String sql = "SELECT id,login, pass FROM USERS  WHERE login = '" + login + "'";
 	stmt = conn.createStatement();
 	ResultSet rs = stmt.executeQuery(sql);
 	String loginfromBase = "";
 	String passFromBase = "";
+	int idFromBase = 0;
 	while(rs.next()) {
            loginfromBase = rs.getString("login");
            passFromBase = rs.getString("pass");
+           idFromBase = rs.getInt(1);
       }
 	;
-	
+	userID = idFromBase;
 	if(loginfromBase.equals(login) && passFromBase.equals(digestedPassword)){
 		System.out.println("haliluya!");
+		
 		return true;
 	}else{
 		return false;

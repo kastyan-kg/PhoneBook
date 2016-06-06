@@ -57,35 +57,52 @@
 		<form class="form-inline" action="#" th:action="@{/addingcontact}"  th:object="${contact}" method="post">
 			  <div class="form-group">
 				
-				<input class="form-control"  placeholder="Surname" th:field="*{surname}" ></input>
+				<input type="text" class="form-control"  placeholder="Surname" th:field="*{surname}" ></input>
 			  </div>
 			  <div class="form-group">
-					<input type="text" class="form-control" id="Name" placeholder="Name"></input>
+					<input type="text" class="form-control" id="Name" placeholder="Name" th:field="*{name}" ></input>
 			  </div>
 			  <div class="form-group">
-					<input type="text" class="form-control" id="Fathers Name" placeholder="FathersName"></input>
+					<input type="text" class="form-control" id="Fathers Name" placeholder="Fathersname" th:field="*{fathersname}" ></input>
 			  </div>
 			  <div class="form-group">
-					<input type="text" class="form-control" id="cellPhone" placeholder="cellPhone"></input>
+					<input type="text" class="form-control" id="Cellphone" placeholder="Cellphone" th:field="*{cellphone}" ></input>
 			  </div>
 			  <div class="form-group">
-					<input type="text" class="form-control" id="Phone" placeholder="Phone"></input>
+					<input type="text" class="form-control" id="Phone" placeholder="Phone" th:field="*{phone}" ></input>
 			  </div>
 			  <div class="form-group">
-					<input type="text" class="form-control" id="Addres" placeholder="Addres"></input>
+					<input type="text" class="form-control" id="Addres" placeholder="Addres" th:field="*{addres}" ></input>
 			  </div>
 			  <div class="form-group">
-					<input type="text" class="form-control" id="Email" placeholder="Email"></input>
+					<input type="text" class="form-control" id="Email" placeholder="Email" th:field="*{email}" ></input>
 			  </div>
 			  <button type="submit" class="btn btn-default">Add Contact</button>
 		</form>
 	
 			<table class="table table-bordered">
-				<tr th:each="message : ${messages}">
-					<td th:text="${message.id}">1</td>
-					<td><a href="#" th:text="${message.title}">Title ...</a></td>
-					<td th:text="${message.text}">Text ...</td>
-				</tr>
+				<thead>
+				  <tr>
+					<th>Name</th>
+					<th>Surname</th>
+					<th>Fathersname</th>
+					<th>cellphone</th>
+					<th>phone</th>
+					<th>addres</th>
+					<th>Email</th>
+				  </tr>
+				</thead>
+				<tbody>
+					<tr th:each="contact : ${phonebook}">
+						<td th:text="${contact.name}"></td>
+						<td th:text="${contact.surname}"></td>
+						<td th:text="${contact.fathersname}"></td>
+						<td th:text="${contact.cellphone}"></td>
+						<td th:text="${contact.phone}"></td>
+						<td th:text="${contact.addres}"></td>
+						<td th:text="${contact.email}"></td>
+					</tr>
+				</tbody>
 			</table>
 		
 	</div>
