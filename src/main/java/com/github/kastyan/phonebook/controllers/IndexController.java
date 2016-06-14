@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.kastyan.phonebook.DAO.ContactDAO;
 import com.github.kastyan.phonebook.classes.Contact;
+import com.github.kastyan.phonebook.classes.ContactCurrent;
 import com.github.kastyan.phonebook.classes.LoginRequest;
 import com.github.kastyan.phonebook.classes.User;
 
@@ -34,6 +35,7 @@ public class IndexController {
 		
 		final ModelAndView mav =  new ModelAndView("/index");
 		Contact contact = new Contact();
+	
 		mav.addObject("contact", contact);
 		mav.addObject("user", this.user);
 		ContactDAO phones = new ContactDAO();
@@ -53,6 +55,7 @@ public class IndexController {
 		
 		
 	}
+	
     
 
 }

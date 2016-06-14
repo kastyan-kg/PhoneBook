@@ -32,29 +32,57 @@
 			<h4 class ="text-center"> Test assignment for lardi</h4>
 		
 	
-	</div>
-		<div class="btn-group btn-group-justified" role="group" aria-label="...">
-			<div class="btn-group" role="group">
-				<a href="index" id="btn">
-					<button type="button" class="btn btn-default">Main</button>
-				</a>
+	    </div>
+		<div class="btn-group btn-group-justified " role="group" aria-label="...">
+			<div class="btn-group " role="group">
+				<a href="index" id="btn"><button type="button" class="btn btn-default">Main</button></a>
+		    </div>
+		    <div class="btn-group " role="group">
+			   <a href="login" id="btn"><button type="button" class="btn btn-default" >LogIN</button></a>
+			</div>
+			<div class="btn-group " role="group">
+				<a href="about" id="btn"><button type="button" class="btn btn-default">About</button></a>
+			</div>
 		</div>
-		<div class="btn-group" role="group">
-			<a href="login" id="btn">
-				<button type="button" class="btn btn-default" >LogIN</button>
-			</a>
-		</div>
-		<div class="btn-group" role="group">
-			<a href="about" id="btn">
-				<button type="button" class="btn btn-default">About</button>
-			</a>
-		</div>
-	</div>
-	
-	<div>
-	
 	<!-- smth inside -->
-		<form class="form-inline" action="#" th:action="@{/addingcontact}"  th:object="${contact}" method="post">
+	<div style = "padding-top:5px">
+	
+			<table class="table table-bordered" >
+				<thead>
+				  <tr>
+				    <th>#</th>
+					<th>Name</th>
+					<th>Surname</th>
+					<th>Fathersname</th>
+					<th>cellphone</th>
+					<th>phone</th>
+					<th>addres</th>
+					<th>Email</th>
+					<th>Actions</th>
+				  </tr>
+				</thead>
+				<tbody>
+				
+					<tr th:each="contact,idStatus : ${phonebook}" >
+					
+					    <td th:text="${idStatus.count}"></td>
+						<td th:text="${contact.name}"></td>
+						<td th:text="${contact.surname}"></td>
+						<td th:text="${contact.fathersname}"></td>
+						<td th:text="${contact.cellphone}"></td>
+						<td th:text="${contact.phone}"></td>
+						<td th:text="${contact.addres}"></td>
+						<td th:text="${contact.email}"></td>
+						<td>
+							<a  th:href = "@{/editcontact/{id}(id=${contact.id})}"><span>Delete</span></a>
+                        </td>
+					</tr>
+					
+				</tbody>
+			</table>
+		
+	</div>
+	    <form class="form-inline" action="#" th:action="@{/addingcontact}"  th:object="${contact}" method="post">
 			  <div class="form-group">
 				
 				<input type="text" class="form-control"  placeholder="Surname" th:field="*{surname}" ></input>
@@ -76,36 +104,11 @@
 			  </div>
 			  <div class="form-group">
 					<input type="text" class="form-control" id="Email" placeholder="Email" th:field="*{email}" ></input>
+					
 			  </div>
+									
 			  <button type="submit" class="btn btn-default">Add Contact</button>
 		</form>
-	
-			<table class="table table-bordered">
-				<thead>
-				  <tr>
-					<th>Name</th>
-					<th>Surname</th>
-					<th>Fathersname</th>
-					<th>cellphone</th>
-					<th>phone</th>
-					<th>addres</th>
-					<th>Email</th>
-				  </tr>
-				</thead>
-				<tbody>
-					<tr th:each="contact : ${phonebook}">
-						<td th:text="${contact.name}"></td>
-						<td th:text="${contact.surname}"></td>
-						<td th:text="${contact.fathersname}"></td>
-						<td th:text="${contact.cellphone}"></td>
-						<td th:text="${contact.phone}"></td>
-						<td th:text="${contact.addres}"></td>
-						<td th:text="${contact.email}"></td>
-					</tr>
-				</tbody>
-			</table>
-		
-	</div>
 	<div class = "footer">
 		<div class = "row">
 		

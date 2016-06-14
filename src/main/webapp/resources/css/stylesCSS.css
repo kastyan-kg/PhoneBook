@@ -13,6 +13,11 @@ body{
 	font-family: 'Alegreya Sans', sans-serif;
 	color:#747704
 }
+.main-menu{
+	
+	color:#eec184;
+	border-color: #747704;
+}
 .info_block{
 	border-style: double;
     border-color: #747704;
@@ -30,6 +35,7 @@ body{
 
 	.footer, .push {
 	height: 155px; /* .push must be the same height as .footer */
+	background-color:#d5ac0b;
 	
 }
 .mycheckbox{

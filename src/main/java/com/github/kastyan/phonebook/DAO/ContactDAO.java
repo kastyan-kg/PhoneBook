@@ -22,8 +22,9 @@ public List showContacts(int userID) throws ClassNotFoundException, SQLException
 		stmt = conn.createStatement();
 		String sql = "SELECT * FROM phones WHERE phones.id_user = " + userID +  ";";
 		ResultSet rs = stmt.executeQuery(sql);
-		Contact contactPhonebook = new Contact();
+		
 		 while(rs.next()){
+			int id = rs.getInt("id");
 			String name =  rs.getString("name");
 		    String surname = rs.getString("surname");
 			String fathersname = rs.getString("fathersname");
@@ -31,13 +32,21 @@ public List showContacts(int userID) throws ClassNotFoundException, SQLException
 			String phone =  rs.getString("phone");
 			String addres =  rs.getString("addres");
 		    String email = rs.getString("email");
-			 phonebook.add(new Contact(name,surname,fathersname,cellphone,phone,addres,email));
+			 phonebook.add(new Contact(id,name,surname,fathersname,cellphone,phone,addres,email));
 			   
 			             }
-		for (Contact contact : phonebook) {
-			System.out.println(contact.getName() + " ");
-			System.out.println(contact.getEmail() + " ");
-		}
+		
 		return phonebook;
 	}
-}
+
+public void deleteContact(int id) throws ClassNotFoundException, SQLException{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection conn = null;
+	Statement stmt = null;
+	conn = DriverManager.getConnection("jdbc:mysql://localhost/phonebook?characterEncoding=UTF-8&useSSL=false","user", "1812");
+	stmt = conn.createStatement();
+	String sql = "DELETE FROM phones WHERE id = " + id + ";";
+	stmt.executeUpdate(sql);
+	
+          }
+ }
