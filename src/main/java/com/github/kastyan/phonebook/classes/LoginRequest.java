@@ -1,16 +1,8 @@
 package com.github.kastyan.phonebook.classes;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.github.kastyan.phonebook.utility.DigestPassword;
+
 
 
 public class LoginRequest {

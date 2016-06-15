@@ -3,8 +3,6 @@ package com.github.kastyan.phonebook.controllers;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.github.kastyan.phonebook.classes.LoginRequest;
+import com.github.kastyan.phonebook.DAO.UserDAO;
 import com.github.kastyan.phonebook.classes.RegisterRequest;
 import com.github.kastyan.phonebook.classes.User;
 
@@ -21,6 +19,8 @@ import com.github.kastyan.phonebook.classes.User;
 public class RegistrationController {
 	@Autowired
 	private User user;
+	@Autowired
+	private UserDAO userDAO;
 	@RequestMapping(value ="/register", method = RequestMethod.GET)
 	public ModelAndView registration(){
 		RegisterRequest registerRequest = new RegisterRequest();
@@ -35,7 +35,7 @@ public class RegistrationController {
 		String password = registerRequest.getPassword();
 		String fullName = registerRequest.getFullName();
 		ModelAndView mav = null;
-		if(user.createUser(login, password, fullName)){
+		if(userDAO.createUser(login, password, fullName)){
 			System.out.println("User" + login + "created succesfully");
 		user.setName(login);
 		mav = new ModelAndView("/index");

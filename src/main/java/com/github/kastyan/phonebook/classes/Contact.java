@@ -2,16 +2,10 @@ package com.github.kastyan.phonebook.classes;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-
-import com.github.kastyan.phonebook.App;
 
 public class Contact {
 	private int id;
@@ -108,25 +102,6 @@ public class Contact {
 	}
 
 
-	public void addContact(Contact newContact, int userID) throws ClassNotFoundException, SQLException{
-
-		this.name = newContact.name;
-		this.surname = newContact.surname;
-		this.fathersname = newContact.fathersname;
-		this.cellphone = newContact.cellphone;
-		this.phone = newContact.phone;
-		this.addres = newContact.addres;
-		this.email = newContact.email;
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection conn = null;
-		Statement stmt = null;
-		conn = DriverManager.getConnection("jdbc:mysql://localhost/phonebook?characterEncoding=UTF-8&useSSL=false","user", "1812");
-		stmt = conn.createStatement();
-		String sql = "INSERT INTO phones(surname, name, fathersName, cellPhone, phone, addres, email, id_user )  "
-		+ "VALUES" + "('" + surname + "','" + name + "','" + fathersname + "','"+
-	    cellphone + "','" + phone + "','" + addres + "','" + email + "','" + userID + "'" + ");";
-		stmt.executeUpdate(sql);
-	}
 	
 	
 }

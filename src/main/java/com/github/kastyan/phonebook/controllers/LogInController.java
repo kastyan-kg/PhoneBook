@@ -12,13 +12,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
+import com.github.kastyan.phonebook.DAO.UserDAO;
 import com.github.kastyan.phonebook.classes.LoginRequest;
 import com.github.kastyan.phonebook.classes.User;
 
@@ -28,6 +27,8 @@ import com.github.kastyan.phonebook.classes.User;
 public class LogInController {
 	@Autowired
 	private User user;
+	@Autowired
+	private UserDAO userDAO;
 	@RequestMapping(value ="/login", method = RequestMethod.GET)
 	public ModelAndView logIn(){
 		LoginRequest loginRequest = new LoginRequest();
@@ -43,8 +44,10 @@ public class LogInController {
 		String login = loginRequest.getLogin();
 		String password = loginRequest.getPassword();
 		ModelAndView mav = null;
-		if(user.checkLogAndPass(login, password)){
+		if(userDAO.checkLogAndPass(login, password)){
 			user.setName(login);
+			int idFromDB = userDAO.getUserIDFromDB(login);
+			user.setUserId(idFromDB);
 			mav = new ModelAndView("redirect:/index");
 		}else{
 			mav = new ModelAndView("redirect:/login");

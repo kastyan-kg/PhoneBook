@@ -51,7 +51,7 @@
 			</div>
 		</div>
 	<!-- smth inside -->
-	<div style = "padding-top:5px">
+
 	
 			<table class="table table-bordered" >
 				<thead>
@@ -82,20 +82,17 @@
 						<td>
 							<a  th:href = "@{/deletecontact/{id}(id=${contact.id})}"><span>Delete</span></a>
                         </td>
-						<td>
-							<a th:href = "@{/editcontact/{id}(id=${contact.id})}"><span>Update</span></a>
-                        </td>
 					</tr>
 					
 				</tbody>
 			</table>
 		
 	</div>
-	<div th:unless="${user.name == 'guest'}">
-	    <form class="form-inline" action="#" th:action="@{/addingcontact}"  th:object="${contact}" method="post">
+	
+	    <form class="form-inline" action="#" th:action="@{/updatecontact}"  th:object="${contact}" method="post">
 			  <div class="form-group">
 				
-				<input type="text" class="form-control"  placeholder="Surname" th:field="*{surname}" ></input>
+				<input type="text" class="form-control"  placeholder="th:text='${selectedcontact.name}'" th:field="*{surname}" ></input>
 			  </div>
 			  <div class="form-group">
 					<input type="text" class="form-control" id="Name" placeholder="Name" th:field="*{name}" ></input>
@@ -117,9 +114,9 @@
 					
 			  </div>
 									
-			  <button type="submit" class="btn btn-default">Add Contact</button>
+			  <button type="submit" class="btn btn-default">Edit Contact</button>
 		</form>
-	</div>
+	
 	<div class = "footer">
 		<div class = "row">
 		

@@ -23,7 +23,13 @@
 		<img class = "title-logo" src = "resources/images/logo.png"/>
 			<h4>
 			    <div class = "text-center">
-						<b>Hello, <span th:text="${user.name}"/>!</b> <a href="logout" id="btn">LogOut</a>
+						<div th:if="${user.name == 'guest'}"> <!-- if customer is anonymous-->
+							<b><div>Welcome, Guest!</div></b>
+						</div>
+
+						<div th:unless="${user.name == 'guest'}"> <!-- if customer is not anonymous(logged in)-->
+							<b><div th:text="'Hello, ' + ${user.name} + ' !'"></div></b><a href="logout" id="btn">LogOut</a>
+						</div>
 				</div>
 			</h4>
 		</div>

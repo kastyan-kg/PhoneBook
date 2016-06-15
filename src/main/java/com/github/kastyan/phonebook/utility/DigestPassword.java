@@ -3,8 +3,7 @@ package com.github.kastyan.phonebook.utility;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+
 
 
 
