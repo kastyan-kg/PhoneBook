@@ -50,71 +50,39 @@
 				<a href="about" id="btn"><button type="button" class="btn btn-default">About</button></a>
 			</div>
 		</div>
-	<!-- smth inside -->
+
 
 	
-			<table class="table table-bordered" >
-				<thead>
-				  <tr>
-				    <th>#</th>
-					<th>Name</th>
-					<th>Surname</th>
-					<th>Fathersname</th>
-					<th>cellphone</th>
-					<th>phone</th>
-					<th>addres</th>
-					<th>Email</th>
-					<th>Actions</th>
-				  </tr>
-				</thead>
-				<tbody>
-				
-					<tr th:each="contact,idStatus : ${phonebook}" >
-					
-					    <td th:text="${idStatus.count}"></td>
-						<td th:text="${contact.name}"></td>
-						<td th:text="${contact.surname}"></td>
-						<td th:text="${contact.fathersname}"></td>
-						<td th:text="${contact.cellphone}"></td>
-						<td th:text="${contact.phone}"></td>
-						<td th:text="${contact.addres}"></td>
-						<td th:text="${contact.email}"></td>
-						<td>
-							<a  th:href = "@{/deletecontact/{id}(id=${contact.id})}"><span>Delete</span></a>
-                        </td>
-					</tr>
-					
-				</tbody>
-			</table>
-		
+			
 	</div>
-	
-	    <form class="form-inline" action="#" th:action="@{/updatecontact}"  th:object="${contact}" method="post">
+		<!-- smth inside -->
+		
+	    <form class="form-inline" action="#" th:action="@{/updatecontact}"   th:object="${contact}" method="post">
 			  <div class="form-group">
 				
-				<input type="text" class="form-control"  placeholder="th:text='${selectedcontact.name}'" th:field="*{surname}" ></input>
+				<input type="text" class="form-control" name = "surname"   th:value ="${selectedContact.surname}" ></input>
 			  </div>
 			  <div class="form-group">
-					<input type="text" class="form-control" id="Name" placeholder="Name" th:field="*{name}" ></input>
+					<input type="text" class="form-control" name = "name"   th:value ="${selectedContact.name}" ></input>
 			  </div>
 			  <div class="form-group">
-					<input type="text" class="form-control" id="Fathers Name" placeholder="Fathersname" th:field="*{fathersname}" ></input>
+					<input type="text" class="form-control" name = "fathersname" th:value ="${selectedContact.fathersname}"  ></input>
 			  </div>
 			  <div class="form-group">
-					<input type="text" class="form-control" id="Cellphone" placeholder="Cellphone" th:field="*{cellphone}" ></input>
+					<input type="text" class="form-control" name = "cellphone" th:value ="${selectedContact.cellphone}"  ></input>
 			  </div>
 			  <div class="form-group">
-					<input type="text" class="form-control" id="Phone" placeholder="Phone" th:field="*{phone}" ></input>
+					<input type="text" class="form-control" name = "phone" th:value ="${selectedContact.phone}"  ></input>
 			  </div>
 			  <div class="form-group">
-					<input type="text" class="form-control" id="Addres" placeholder="Addres" th:field="*{addres}" ></input>
+					<input type="text" class="form-control" name = "addres" th:value ="${selectedContact.addres}"  ></input>
 			  </div>
 			  <div class="form-group">
-					<input type="text" class="form-control" id="Email" placeholder="Email" th:field="*{email}" ></input>
+					<input type="text" class="form-control" name = "email" th:value ="${selectedContact.email}"  ></input>
 					
 			  </div>
 									
-			  <button type="submit" class="btn btn-default">Edit Contact</button>
+			  <button type="submit" class="btn btn-default">Update Contact</button>
 		</form>
 	
 	<div class = "footer">
@@ -134,6 +102,6 @@
 	
 
 </div>
-</div>
+
 </body>
 </html>

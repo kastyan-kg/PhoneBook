@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.kastyan.phonebook.DAO.ContactDAO;
 import com.github.kastyan.phonebook.classes.Contact;
+import com.github.kastyan.phonebook.classes.SelectedContact;
 import com.github.kastyan.phonebook.classes.User;
 
 
@@ -23,20 +24,36 @@ public class EditContactController {
 	private User user;
 	@Autowired
 	private ContactDAO contactDAO;
+	@Autowired
+	private SelectedContact selectedContact;
+	@RequestMapping(value ="/edit", method = RequestMethod.GET)
+	public ModelAndView edit(){
+		ModelAndView mav = new ModelAndView("/edit");
+		Contact contact = new Contact();
+		mav.addObject("contact", contact);
+		mav.addObject("selectedContact", selectedContact);
+		mav.addObject("user", user);
+		return mav;
+	}
+	@RequestMapping(value ="/edit/{id}", method = RequestMethod.GET)
+	public ModelAndView editId(@PathVariable   int id) throws ClassNotFoundException, SQLException{
+		System.out.println("int id " + id);
+		selectedContact.selectContact(contactDAO.withdrawContactFromDB(id));
+		System.out.println("selectedContact.getName()" + selectedContact.getName());
+	
+		ModelAndView mav = new ModelAndView("redirect:/edit");
+		mav.addObject("selectedContact", selectedContact);
+		return mav;
+	}
 	@RequestMapping(value ="/deletecontact/{id}", method = RequestMethod.GET)
 	public ModelAndView delete(@PathVariable   int id) throws ClassNotFoundException, SQLException{
 		contactDAO.deleteContact(id);
 		return new ModelAndView("redirect:/index");
 	}
-	@RequestMapping(value ="/editcontact/{id}", method = RequestMethod.GET)
-	public ModelAndView edit(@PathVariable   int id) throws ClassNotFoundException, SQLException{
-		ModelAndView mav = new ModelAndView("redirect:/edit");
-		mav.addObject("selectedContact", contactDAO.selectContact(user.getUserId()));
-		return mav;
-	}
-	@RequestMapping(value ="/updatecontact/{id}", method = RequestMethod.GET)
+
+	@RequestMapping(value ="/updatecontact", method = RequestMethod.POST)
 	public ModelAndView update(@ModelAttribute("Contact") Contact contact) throws ClassNotFoundException, SQLException{
-		contactDAO.updateContact(contact, user.getUserId());
+		contactDAO.updateContact(contact, selectedContact.getId());
 		return new ModelAndView("redirect:/index");
 	}
 	@RequestMapping(value = "/addingcontact", method = RequestMethod.POST)

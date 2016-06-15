@@ -32,8 +32,6 @@ public class IndexController {
 		Contact contact = new Contact();
 		mav.addObject("contact", contact);
 		mav.addObject("user", this.user);
-		System.out.println("User fields: " + user.getName() + user.getUserId());
-		
 		List<Contact> phonebook = contactDAO.showContacts(user.getUserId());
 		mav.addObject("phonebook", phonebook);
         return mav;

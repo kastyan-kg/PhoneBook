@@ -80,17 +80,17 @@
 						<td th:text="${contact.addres}"></td>
 						<td th:text="${contact.email}"></td>
 						<td>
-							<a  th:href = "@{/deletecontact/{id}(id=${contact.id})}"><span>Delete</span></a>
+							<a  class="btn btn-default" th:href = "@{/deletecontact/{id}(id=${contact.id})}"><span>Delete</span></a>
+							<a  class="btn btn-default" th:href = "@{/edit/{id}(id=${contact.id})}"><span>Update</span></a>
                         </td>
-						<td>
-							<a th:href = "@{/editcontact/{id}(id=${contact.id})}"><span>Update</span></a>
-                        </td>
+						
 					</tr>
 					
 				</tbody>
 			</table>
 		
 	</div>
+	
 	<div th:unless="${user.name == 'guest'}">
 	    <form class="form-inline" action="#" th:action="@{/addingcontact}"  th:object="${contact}" method="post">
 			  <div class="form-group">
